@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Rename Genie - Preview{% endblock %}
+
+{% block content %}
+  <h5>Rename Preview</h5>
+  <table class="table table-bordered mt-3">
+    <thead class="table-light">
+      <tr>
+        <th>Original Name</th>
+        <th>New Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in mapping %}
+      <tr>
+        <td>{{ item.original }}</td>
+        <td>{{ item.new }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <form action="/apply" method="post" style="display:inline-block;">
+    <input type="hidden" name="run_id" value="{{ run_id }}">
+    <button type="submit" class="btn btn-success mt-3">Apply Rename</button>
+  </form>
+
+  <a href="/prompt?run_id={{ run_id }}" class="btn btn-secondary mt-3">Back to Prompt</a>
+
+  <br/><br/>
+{% endblock %}

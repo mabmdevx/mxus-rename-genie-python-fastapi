@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Rename Genie - Prompt{% endblock %}
+
+{% block content %}
+  <h5>Scanned Workspace</h5>
+  
+  <div id="file-tree" class="border p-3 rounded mb-4" style="max-height: 400px; overflow-y: auto;"></div>
+
+  <form action="/preview" method="post">
+    <input type="hidden" name="run_id" value="{{ run_id }}">
+    <h4>Rename Prompt</h4>
+    <div class="mb-3">
+      <textarea class="form-control" id="prompt" name="prompt" rows="3"
+        placeholder="Enter how you want the files/folders renamed..."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Generate Rename Plan</button>
+  </form>
+
+  <br/><br/>
+
+  <script>
+    const treeData = JSON.parse(`{{ tree_json | safe }}`);
+
+    function renderTree(node) {
+      const li = document.createElement("li");
+      const text = document.createElement("span");
+      text.textContent = (node.is_dir ? "📁 " : "📄 ") + node.name;
+
+      if (node.is_dir) {
+        text.classList.add("folder");
+        // Remove collapsed class to expand by default
+        // li.classList.add("collapsed");
+        text.addEventListener("click", () => li.classList.toggle("collapsed"));
+      }
+
+      li.appendChild(text);
+
+      if (node.children && node.children.length > 0) {
+        const ul = document.createElement("ul");
+        node.children.forEach(child => ul.appendChild(renderTree(child)));
+        li.appendChild(ul);
+      }
+
+      return li;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("file-tree");
+      const ul = document.createElement("ul");
+      ul.appendChild(renderTree(treeData));
+      container.appendChild(ul);
+    });
+  </script>
+{% endblock %}

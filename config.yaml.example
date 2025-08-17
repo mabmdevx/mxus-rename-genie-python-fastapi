@@ -1,0 +1,8 @@
+workspace_path: "workspace"
+openrouter_api_key: "YOUR_KEY"
+openrouter_model: "openai/gpt-oss-20b:free"
+log_level: "INFO"
+ignore_files:
+  - ".gitignore"
+app_port: 8000
+app_reload: true

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Rename Genie - Apply{% endblock %}
+
+{% block content %}
+  <h5>Workspace After Rename</h5>
+
+  <div id="file-tree" class="border p-3 rounded mb-4" style="max-height: 400px; overflow-y: auto;"></div>
+
+  <h4>Rename Summary</h4>
+  <table class="table table-bordered mt-3">
+    <thead class="table-light">
+      <tr>
+        <th>Old Name</th>
+        <th>New Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in renamed_items %}
+      <tr>
+        <td>{{ item.original }}</td>
+        <td>{{ item.new }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="/" class="btn btn-primary mt-3">Back to Home</a>
+  
+  <br/><br/>
+
+  <script>
+    const treeData = JSON.parse(`{{ tree_json | safe }}`);
+
+    function renderTree(node) {
+      const li = document.createElement("li");
+      const text = document.createElement("span");
+      text.textContent = (node.is_dir ? "📁 " : "📄 ") + node.name;
+      if (node.is_dir) {
+        text.classList.add("folder");
+      }
+      li.appendChild(text);
+      if (node.children && node.children.length > 0) {
+        const ul = document.createElement("ul");
+        node.children.forEach(child => ul.appendChild(renderTree(child)));
+        li.appendChild(ul);
+      }
+      return li;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("file-tree");
+      const ul = document.createElement("ul");
+      ul.appendChild(renderTree(treeData));
+      container.appendChild(ul);
+    });
+  </script>
+{% endblock %}

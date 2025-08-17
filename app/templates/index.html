@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Rename Genie{% endblock %}
+
+{% block content %}
+  <p>Drop the files/directories you want to rename in the workspace directory and click the Scan Workspace button.</p>
+  <form action="/scan" method="post">
+    <button type="submit" class="btn btn-primary mt-3">Scan Workspace</button>
+  </form>
+{% endblock %}
