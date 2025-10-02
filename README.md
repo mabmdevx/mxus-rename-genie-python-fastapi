@@ -8,6 +8,18 @@
 - WebApp Architecture: Postback
 - LLM Platform: OpenRouter
 
+### Screenshots
+
+Homepage ![Rename Genie - Home](./screenshots/rename_genie1.png)
+
+Scanned Workspace ![Rename Genie - Scanned Workspace](./screenshots/rename_genie2.png)
+
+Scanned Workspace and Prompt ![Rename Genie - Scanned Workspace and Prompt](./screenshots/rename_genie3.png)
+
+Preview before Apply ![Rename Genie - Preview before Apply](./screenshots/rename_genie4.png)
+
+After Apply Summary ![Rename Genie - After Apply Summary](./screenshots/rename_genie5.png)
+
 ## Environment Setup
 
 ### Create a virtual environment
@@ -32,10 +44,11 @@ pip install -r requirements.txt
 ```
 cp config.yaml.example config.yaml
 ```
+Set your OpenRouter API key and OpenRouter model in config.yaml
 
-### Running the app in development mode
+### Running the app
 ```
-python main.py
+python app/main.py
 ```
 
 Application will start by default on http://localhost:8000
