@@ -56,3 +56,9 @@ Application will start by default on http://localhost:8000
 ### Setup the workspace directory
 Drop the files and folders you want to rename in the `workspace` directory.
 
+
+<img
+class="statcounter"
+src="https://c.statcounter.com/13168253/0/cc301633/1/"
+alt="Web Analytics"
+/>
