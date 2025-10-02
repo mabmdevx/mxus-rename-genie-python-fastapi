@@ -1,7 +1,7 @@
 # Rename Genie
 
 ## Description
-- A simple but powerful way to bulk rename your files and directories using AI powered by LLM
+- A simple yet powerful way to bulk rename your files and directories using AI powered by LLM
 
 ## Tech Stack
 - Tech Stack: Python FastAPI, Bootstrap, HTML, CSS, JS
